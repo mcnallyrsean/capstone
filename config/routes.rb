@@ -10,16 +10,26 @@ Rails.application.routes.draw do
   get '/bars/:id' => 'bars#show'
   get '/bars/:id/edit' => 'bars#edit'
   patch '/bars/:id' => 'bars#update'
-  delete 'bars/:id' => 'bars#destroy'
+  delete '/bars/:id' => 'bars#destroy'
 
-  #CHECK IN routes
+  # CHECK IN routes
   get '/check_ins' => 'check_ins#index'
   get '/check_ins/new' => 'check_ins#new'
-  post '/check_ins' => 'check_ins#update'
+  post '/check_ins' => 'check_ins#create'
   get '/check_ins/:id' => 'check_ins#show'
   get '/check_ins/:id/edit' => 'check_ins#edit'
   patch '/check_ins/:id' => 'check_ins#update'
-  delete 'check_ins/:id' => 'check_ins#destroy'
+  delete '/check_ins/:id' => 'check_ins#destroy'
+
+  # GAMES routes
+  get '/games' => 'games#index'
+  get '/games/new' => 'games#new'
+  post '/games' => 'games#create'
+  get '/games/:id' => 'games#show'
+  get '/games/:id/edit' => 'games#edit'
+  patch '/games/:id' => 'games#update'
+  delete '/games/:id' => 'games#destroy'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
