@@ -48,6 +48,14 @@ Rails.application.routes.draw do
   patch '/leagues/:id' => 'leagues#update'
   delete '/leagues/:id' => 'leagues#destroy'
 
+  # SPORT routes
+  get '/sports' => 'sports#index'
+  get '/sports/new' => 'sports#new'
+  post '/sports' => 'sports#create'
+  get '/sports/:id' => 'sports#show'
+  get '/sports/:id/edit' => 'sports#edit'
+  patch '/sports/:id' => 'sports#update'
+  delete '/sports/:id' => 'sports#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
