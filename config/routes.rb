@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   root 'pages#home'
 
-  # BARS routes
+  # BAR routes
   get '/bars' => 'bars#index'
   get '/bars/new' => 'bars#new'
   post '/bars' => 'bars#create'
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   patch '/check_ins/:id' => 'check_ins#update'
   delete '/check_ins/:id' => 'check_ins#destroy'
 
-  # GAMES routes
+  # GAME routes
   get '/games' => 'games#index'
   get '/games/new' => 'games#new'
   post '/games' => 'games#create'
@@ -29,6 +29,15 @@ Rails.application.routes.draw do
   get '/games/:id/edit' => 'games#edit'
   patch '/games/:id' => 'games#update'
   delete '/games/:id' => 'games#destroy'
+
+  # LEAGUE routes
+  get '/leagues' => 'leagues#index'
+  get '/leagues/new' => 'leagues#new'
+  post '/leagues' => 'leagues#create'
+  get '/leagues/:id' => 'leagues#show'
+  get '/leagues/:id/edit' => 'leagues#edit'
+  patch '/leagues/:id' => 'leagues#update'
+  delete '/leagues/:id' => 'leagues#destroy'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
