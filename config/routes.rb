@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "pages#home"
+  root 'pages#home'
+
+  # BARS routes
+  get '/bars' => 'bars#index'
+  get '/bars/new' => 'bars#new'
+  post '/bars' => 'bars#create'
+  get '/bars/:id' => 'bars#show'
+  get '/bars/:id/edit' => 'bars#edit'
+  patch '/bars/:id' => 'bars#update'
+  delete 'bars/:id' => 'bars#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
