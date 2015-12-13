@@ -1,6 +1,4 @@
 class BarsController < ApplicationController
-  def home
-  end
 
   def index
   end
@@ -22,5 +20,5 @@ class BarsController < ApplicationController
 
   def destroy
   end
-  
+
 end

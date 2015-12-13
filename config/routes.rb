@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  
   root 'pages#home'
 
   # BARS routes
@@ -10,6 +11,15 @@ Rails.application.routes.draw do
   get '/bars/:id/edit' => 'bars#edit'
   patch '/bars/:id' => 'bars#update'
   delete 'bars/:id' => 'bars#destroy'
+
+  #CHECK IN routes
+  get '/check_ins' => 'check_ins#index'
+  get '/check_ins/new' => 'check_ins#new'
+  post '/check_ins' => 'check_ins#update'
+  get '/check_ins/:id' => 'check_ins#show'
+  get '/check_ins/:id/edit' => 'check_ins#edit'
+  patch '/check_ins/:id' => 'check_ins#update'
+  delete 'check_ins/:id' => 'check_ins#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
