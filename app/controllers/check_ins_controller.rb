@@ -1,15 +1,32 @@
 class CheckInsController < ApplicationController
 
   def index
+    @check_ins = CheckIn.all
   end
 
   def new
+    @check_in = CheckIn.new
+    render :new
   end
 
   def create
+    @check_in = CheckIn.new(
+      user_id: current_user.id,
+      bar_id: params[:bar_id],
+      team_id: params[:team_id],
+      game_id: params[:game_id],
+      league_id: params[:league_id],
+      sport_id: params[:sport_id]
+      )
+    if @check_in.save
+      redirect_to "/check_ins/#{@check_in.id}"
+    else
+      render :new
+    end
   end
 
   def show
+    @check_in = CheckIn.find_by(id: params[:id])
   end
 
   def edit
