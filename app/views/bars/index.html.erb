@@ -1,1 +1,9 @@
-index.html.erb
+<h1>All da bars</h1>
+
+<% @bars.each do |bar| %>
+  <h2><%= bar.name %></h2>
+  <p><%= bar.location %></p>
+  <p><%= bar.description %></p>
+  <p><%= bar.hours_of_operation %></p>
+  <p><%= bar.status %></p>
+<% end %>

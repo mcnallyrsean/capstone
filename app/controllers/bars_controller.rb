@@ -1,7 +1,7 @@
 class BarsController < ApplicationController
 
   def index
-    @bars = Bars.all
+    @bars = Bar.all
   end
 
   def new
