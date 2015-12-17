@@ -1,1 +1,6 @@
-index.html.erb
+<h1>All the games</h1>
+
+<% @games.each do |game| %>
+  <h2><%= game.team_1_id.name %> vs. <%= game.team_2_id.name %></h2>
+  <p>Location: <%= game.location %></p>
+<% end %>
