@@ -1,1 +1,13 @@
-edit.html.erb
+<h1>Edit dis check_in in yo</h1>
+
+<%= form_tag '/check_ins', method: :patch do %>
+  <div>
+    <%= label_tag :bar_id %>
+    <%= text_field_tag :bar_id, @check_in.bar.name %>
+  </div>
+  <div>
+    <%= label_tag :game_id %>
+    <%= text_field_tag :game_id, @check_in.game_id %>
+  </div>
+  <%= submit_tag "Submit yo" %>
+<% end %>
