@@ -1,1 +1,5 @@
-index.html.erb
+<h1>All yo leagues</h1>
+
+<% @leagues.each do |league| %>
+  <h2><%= league.name %></h2>
+<% end %>
