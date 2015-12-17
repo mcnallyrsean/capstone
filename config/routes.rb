@@ -30,6 +30,15 @@ Rails.application.routes.draw do
   patch '/games/:id' => 'games#update'
   delete '/games/:id' => 'games#destroy'
 
+  # IMAGES routes
+  get '/images' => 'images#index'
+  get '/images/new' => 'images#new'
+  post '/images' => 'images#create'
+  get '/images/:id' => 'images#show'
+  get '/images/:id/edit' => 'images#edit'
+  patch '/images/:id' => 'images#update'
+  delete '/images/:id' => 'images#destroy'
+
   # TEAM routes
   get '/teams' => 'teams#index'
   get '/teams/new' => 'teams#new'
