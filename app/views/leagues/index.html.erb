@@ -1,5 +1,6 @@
 <h1>All yo leagues</h1>
 
 <% @leagues.each do |league| %>
-  <h2><%= league.name %></h2>
+  <h2>League: <%= league.name %></h2>
+  <h2>Sport: <%= league.sport.name %></h2>
 <% end %>

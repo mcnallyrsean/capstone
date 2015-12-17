@@ -1,5 +1,5 @@
 class Sport < ActiveRecord::Base
-  belongs_to :league
+  has_many :leagues
   belongs_to :team
   has_many :images
 end
