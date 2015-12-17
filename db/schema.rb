@@ -11,14 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213225352) do
+ActiveRecord::Schema.define(version: 20151217003632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bars", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "location"
+    t.string   "description"
+    t.string   "hours_of_operation"
+    t.string   "status"
+    t.string   "promo"
+    t.string   "facebook_url"
+    t.string   "twitter_handle"
+    t.integer  "number_of_check_ins"
+    t.integer  "game_id_check_in"
+    t.integer  "team_id_check_in"
+    t.integer  "league_id_check_in"
+    t.integer  "sport_id_check_in"
+    t.integer  "number_of_tvs"
+    t.integer  "tv_quality"
+    t.integer  "experience_rating"
+    t.integer  "user_id"
   end
 
   create_table "check_ins", force: :cascade do |t|
