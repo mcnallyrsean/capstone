@@ -1,1 +1,13 @@
-new.html.erb
+<h1>Check in yo</h1>
+
+<%= form_tag '/check_ins', method: :post do %>
+  <div>
+    <%= label_tag :bar_id %>
+    <%= text_field_tag :bar_id %>
+  </div>
+  <div>
+    <%= label_tag :game_id %>
+    <%= text_field_tag :game_id %>
+  </div>
+  <%= submit_tag "Submit yo" %>
+<% end %>

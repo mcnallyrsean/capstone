@@ -1,1 +1,6 @@
-index.html.erb
+<h1>All dem checkins</h1>
+
+<% @check_ins.each do |check_in| %>
+  <%= check_in.bar.name %>
+  <%= check_in.game_id %>
+<% end %>
