@@ -1,1 +1,21 @@
-new.html.erb
+<h1>Add a game</h1>
+
+<%= form_tag '/games', method: :post do %>
+  <div>
+    <%= label_tag :location %>
+    <%= text_field_tag :location %>
+  </div>
+  <div>
+    <%= label_tag :team_1_id %>
+    <%= text_field_tag :team_1_id %>
+  </div>
+  <div>
+    <%= label_tag :team_2_id %>
+    <%= text_field_tag :team_2_id %>
+  </div>
+  <div>
+    <%= label_tag :check_in_id %>
+    <%= text_field_tag :check_in_id %>
+  </div>
+  <%= submit_tag "Add dis game yo" %>
+<% end %>
