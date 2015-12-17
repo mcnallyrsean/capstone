@@ -1,6 +1,6 @@
 <h1>Edit dis check_in in yo</h1>
 
-<%= form_tag '/check_ins', method: :patch do %>
+<%= form_tag "/check_ins/#{@check_in.id}", method: :patch do %>
   <div>
     <%= label_tag :bar_id %>
     <%= text_field_tag :bar_id, @check_in.bar.name %>
