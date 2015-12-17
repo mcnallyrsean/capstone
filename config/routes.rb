@@ -21,6 +21,15 @@ Rails.application.routes.draw do
   patch '/check_ins/:id' => 'check_ins#update'
   delete '/check_ins/:id' => 'check_ins#destroy'
 
+  # DASHBOARD routes
+  get '/dashboards' => 'dashboards#index'
+  get '/dashboards/new' => 'dashboards#new'
+  post '/dashboards' => 'dashboards#create'
+  get '/dashboards/:id' => 'dashboards#show'
+  get '/dashboards/:id/edit' => 'dashboards#edit'
+  patch '/dashboards/:id' => 'dashboards#update'
+  delete 'dashboards/:id' => 'dashboards#destroy'
+
   # GAME routes
   get '/games' => 'games#index'
   get '/games/new' => 'games#new'
