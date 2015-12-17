@@ -12,6 +12,7 @@ class LeaguesController < ApplicationController
   def create
     @league = League.new(
       name: params[:name],
+      sport_id: params[:sport_id]
       )
     if @league.save
       redirect_to "/leagues/#{@league.id}"
