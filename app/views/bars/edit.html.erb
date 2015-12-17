@@ -1,6 +1,6 @@
 <h1>Edit a bar</h1>
 
-<%= form_tag '/bars', method: :post do %>
+<%= form_tag '/bars', method: :patch do %>
   <div>
     <%= label_tag :name %>
     <%= text_field_tag :name, @bar.name %>
