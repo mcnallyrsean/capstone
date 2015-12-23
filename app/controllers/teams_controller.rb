@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
       sport_id: params[:sport_id],
       )
     if @team.save
-      redirect_to "/teams/#{team.id}"
+      redirect_to "/teams/#{@team.id}"
     else
       render :new
     end
