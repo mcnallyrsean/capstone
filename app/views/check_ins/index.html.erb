@@ -1,6 +1,8 @@
 <h1>All dem checkins</h1>
 
 <% @check_ins.each do |check_in| %>
-  <%= check_in.bar.name %>
-  <%= check_in.game_id %>
+  <p><%= check_in.id %></p>
+  <p><%= check_in.bar.name %></p>
+  <p><%= check_in.game.team_1.name %></p>
+  <p><%= check_in.game.team_2.name %></p>
 <% end %>
