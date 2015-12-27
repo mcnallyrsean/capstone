@@ -3,3 +3,20 @@
 <p><%= @user.last_name %></p>
 <p><%= @user.facebook_url %></p>
 <p><%= @user.twitter_handle %></p>
+
+<h3>Favorite Teams</h3>
+<ul>
+<% @user.user_teams.each do |user_team| %>
+  <li><%= user_team.team.name %></li>
+<% end %>
+</ul>
+
+<h3>Check Ins</h3>
+<% @user.check_ins.each do |check_in| %>
+  <ul>
+    <li><%= check_in.bar.name %>  </li>
+    <li><%= check_in.game.team_1.name %> v. <%= check_in.game.team_2.name %></li>
+    <li><%= check_in.comments %></li>
+  </ul>
+<% end %>
+ 

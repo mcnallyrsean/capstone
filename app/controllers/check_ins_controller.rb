@@ -13,7 +13,7 @@ class CheckInsController < ApplicationController
     @check_in = CheckIn.new(
       user_id: current_user.id,
       bar_id: params[:bar_id],
-      team_id: params[:team_id],
+      team_1_id: params[:team_1_id],
       game_id: params[:game_id],
       league_id: params[:league_id],
       sport_id: params[:sport_id]
