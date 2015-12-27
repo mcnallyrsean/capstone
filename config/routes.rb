@@ -84,4 +84,9 @@ Rails.application.routes.draw do
   patch '/sports/:id' => 'sports#update'
   delete '/sports/:id' => 'sports#destroy'
 
+  #USER routes
+  get '/users/:id' => 'users#show'
+  get '/users/:id/edit' => 'users#edit'
+  patch '/users/:id' => 'users#update'
+
 end
