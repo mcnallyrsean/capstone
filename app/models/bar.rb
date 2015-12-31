@@ -5,4 +5,5 @@ class Bar < ActiveRecord::Base
   has_many :sports
   has_many :leagues
   has_many :images
+  has_many :users
 end

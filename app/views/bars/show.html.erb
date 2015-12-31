@@ -5,3 +5,8 @@
 <p><%= @bar.description %></p>
 <p><%= @bar.hours_of_operation %></p>
 <p><%= @bar.status %></p>
+<p><strong>Check-Ins</strong></p>
+<% @bar.check_ins.each do |check_in| %>
+ <p><%= check_in.id %>: <%= check_in.game.team_1.name %> vs. <%= check_in.game.team_1.name %>
+ <p><%= check_in.user.first_name %> <%= check_in.user.last_name %></p>
+<% end %>
