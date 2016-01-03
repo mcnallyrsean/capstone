@@ -1,5 +1,12 @@
 <h1>Here is a team.</h1>
-
 <h2><%= @team.name %></h2>
-<p><%= @team.league.name %></p>
-<p><%= @team.sport.name %></p>
+<br>
+<p>League: <%= @team.league.name %></p>
+<p>Sport: <%= @team.sport.name %></p>
+<br>
+<% @team.check_ins.each do |check_in| %>
+  <p>Game: <%= check_in.game.team_1.name %> vs <%= check_in.game.team_2.name %></p>
+  <p>Bar: <%= check_in.bar.name %></p>
+<% end %>
+
+<!-- Having a difficult time producing all check ins for a given team -->

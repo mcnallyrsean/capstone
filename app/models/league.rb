@@ -3,4 +3,5 @@ class League < ActiveRecord::Base
   has_many :games
   has_many  :images
   belongs_to :sport
+  has_many :check_ins
 end

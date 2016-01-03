@@ -1,3 +1,7 @@
 <h1>Here is yo league</h1>
 
 <h2><%= @league.name %></h2>
+<% @league.check_ins.each do |check_in| %>
+  <h3>Matchup <%= check_in.game.team_1.name %> vs. <%= check_in.game.team_2.name %></h3>
+  <p><%= check_in.bar.name%></p>
+<% end %>
