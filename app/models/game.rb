@@ -6,4 +6,5 @@ class Game < ActiveRecord::Base
   belongs_to :league
   belongs_to :bar
   has_many :images
+  has_many :check_ins
 end

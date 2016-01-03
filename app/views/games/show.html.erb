@@ -2,4 +2,7 @@
 
 <h2><%= @game.team_1.name %> vs <%= @game.team_2.name %></h2>
 <p><%= @game.location %></p>
+<% @game.check_ins.each do |check_in| %>
+  <p><%= check_in.bar.name %></p>
+<% end %>
 
