@@ -4,6 +4,7 @@
 <p>League: <%= @team.league.name %></p>
 <p>Sport: <%= @team.sport.name %></p>
 <br>
+<h3>Check-ins</h3>
 <% @team.check_ins.each do |check_in| %>
   <p>Game: <%= check_in.game.team_1.name %> vs <%= check_in.game.team_2.name %></p>
   <p>Bar: <%= check_in.bar.name %></p>
