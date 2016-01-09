@@ -6,4 +6,6 @@ class Team < ActiveRecord::Base
   has_many :users, through: :user_teams
   has_many :team_check_ins
   has_many :check_ins, through: :team_check_ins
+  # has_many :league_teams
+  # has_many :leagues, through: :league_teams
 end

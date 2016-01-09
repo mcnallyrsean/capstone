@@ -12,5 +12,4 @@ class User < ActiveRecord::Base
   has_many :user_teams 
   has_many :bars, through: :check_ins
   has_many :images
-
 end
