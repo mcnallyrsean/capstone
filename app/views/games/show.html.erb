@@ -1,8 +1,12 @@
 <h1>Here's game:</h1>
 
-<h2><%= @game.team_1.name %> vs <%= @game.team_2.name %></h2>
-<p><%= @game.location %></p>
+<h2><%= @game.team_1.name %> vs. <%= @game.team_2.name %></h2>
+<p>Date: <%= @game.date %></p>
+<p>Time: <%= @game.time %></p>
+<p>Location <%= @game.location %></p>
 <% @game.check_ins.each do |check_in| %>
   <p><%= check_in.bar.name %></p>
 <% end %>
+
+
 

@@ -672,16 +672,17 @@
         <div class="static-page-image">
         <img src="images/backgrounds/full-bg-20.jpg" alt="">
         <div class="description-left">
-            <span class="title c-white">Help others to achieve their dreams</span>
-            <span class="subtitle text-wrapped alpha c-black">A complete website template that can be perfectly adapted in any situation or quickly customized for other ideas.</span>
-            <a href="#" class="btn btn-lg btn-b-white mt-40 hidden-xs">Post a job now</a>
+            <!-- <span class="title c-white">Help others to achieve their dreams</span> -->
+            <!-- <span class="subtitle text-wrapped alpha c-black">A complete website template that can be perfectly adapted in any situation or quickly customized for other ideas.</span> -->
+            <!-- <a href="#" class="btn btn-lg btn-b-white mt-40 hidden-xs">Post a job now</a> -->
         </div>
     </div>
 
     <section class="slice bg-white">
         <div class="container">
             <div class="wp-section relative">
-                <form class="form-inline form-base" role="form">
+                <!-- <form class="form-inline form-base" role="form" action="/bars/search" method="post"> -->
+                <%= form_tag "/bars/search", method: :post, class: "form-inline form-base", role: "form" do %>
                     <div class="inline-form-filters over-top-element base">
                         <!-- Optional filters tigger button -->
                         <a href="#" id="btnToggleOptionalFIlters" data-animate-in="animated fadeInDown" data-animate-out="animated fadeOutUp" class="optional-form-filters-trigger" title="Toggle advanced search"></a>
@@ -691,7 +692,7 @@
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg">
                                     <label class="sr-only">Search text</label>
-                                    <input type="text" class="form-control input-lg" placeholder="I want to watch...">
+                                    <input type="text" name="search_team" class="form-control input-lg" placeholder="I want to watch...">
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -728,9 +729,9 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <a href="#" class="btn btn-lg btn-block btn-alt btn-icon btn-icon-right btn-icon-go">
+                                <button class="btn btn-lg btn-block btn-alt btn-icon btn-icon-right btn-icon-go">
                                     <span>Show me bars!</span>
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -794,7 +795,8 @@
                             </div>
                         </div>
                     </div>
-                 </form>
+                 <!-- </form> -->
+                 <% end %>
             </div>
         </div>
     </section>

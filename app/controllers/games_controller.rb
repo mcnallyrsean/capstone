@@ -18,10 +18,11 @@ class GamesController < ApplicationController
       check_in_id: params[:check_in_id],
       sport_id: params[:sport_id],
       league_id: params[:league_id],
-      bar_id: params[:bar_id]
+      bar_id: params[:bar_id],
+      time: params[:time]
       )
     if @game.save
-      redirect_to "/games/#{@game.id}"
+      redirect_to "/games/new"
     else
       render :new
     end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/bars/:id/edit' => 'bars#edit'
   patch '/bars/:id' => 'bars#update'
   delete '/bars/:id' => 'bars#destroy'
+  post '/bars/search' => 'bars#search'
 
   # CHECK IN routes
   get '/check_ins' => 'check_ins#index'

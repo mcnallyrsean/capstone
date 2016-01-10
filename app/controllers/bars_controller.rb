@@ -2,6 +2,10 @@ class BarsController < ApplicationController
 
   def index
     @bars = Bar.all
+
+    if params[:search_team]
+      @bars = Team.where("name iLIKE ?", "%#{params[:search_team]}%").first.check_ins.map { |ci| ci.bar }.to_set
+    end
   end
 
   def new
@@ -30,6 +34,7 @@ class BarsController < ApplicationController
 
   def show
     @bar = Bar.find_by(id: params[:id])
+    @games = Game.all
   end
 
   def edit
@@ -58,6 +63,10 @@ class BarsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def search
+    redirect_to "/bars?search_team=#{params[:search_team]}"
   end
 
 end
