@@ -1,11 +1,8 @@
 <h1>All da bars</h1>
 
-<% @bars.each do |bar| %>
-  <h2><%= link_to "#{bar.name}", "/bars/#{bar.id}" %></h2>
-  <p><%= bar.location %></p>
-  <p><%= bar.description %></p>
-  <p><%= bar.hours_of_operation %></p>
-  <p><%= bar.status %></p>
+<% @bars['results'].each do |bar| %>
+  <h2><%= bar['name'] %></h2>
+  <p><%= bar['vicinity'] %></p>
 <% end %>
 
 

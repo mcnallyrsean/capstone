@@ -1,7 +1,8 @@
 class BarsController < ApplicationController
 
   def index
-    @bars = Bar.all
+    @bars = Unirest.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.8884,-87.6355&radius=30000&types=bar&key=#{ENV['API_KEY']}").body
+
 
     if params[:search_team]
       @bars = Team.where("name iLIKE ?", "%#{params[:search_team]}%").first.check_ins.map { |ci| ci.bar }.to_set
