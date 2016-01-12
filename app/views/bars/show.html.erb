@@ -11,9 +11,11 @@
  <p><%= check_in.user.first_name %> <%= check_in.user.last_name %></p>
 <% end %>
 
+<h1>Today's Games</h1>
 <% @games.each do |game| %>
   <h2><%= link_to "#{game.team_1.name}", "/games/#{game.id}" %> vs. <%= link_to "#{game.team_2.name}", "/games/#{game.id}"  %></h2>
   <p>Date: <%= game.date %></p>
   <p>Time: <%= game.time %></p>
+  <p>Game ID: <%= game.id %></p>
   <%= link_to "Check-In!", "/check_ins/new", class: "btn btn-success" %>
 <% end %>
