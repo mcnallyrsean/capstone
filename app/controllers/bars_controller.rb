@@ -37,6 +37,8 @@ class BarsController < ApplicationController
     @bar = Bar.find_by(id: params[:id])
     @games = Game.all
     @bar_attributes = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@bar.place_id}&key=#{ENV['API_KEY']}").body
+    @photo_reference = @bar_attributes['result']['photos'][0]['photo_reference']
+    @bar_photos = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@photo_reference}&key=#{ENV['API_KEY']}"
   end
 
   def edit

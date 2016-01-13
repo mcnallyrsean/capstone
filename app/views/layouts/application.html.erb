@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css"> 
     <link rel="stylesheet" href="/assets/fancybox/jquery.fancybox.css?v=2.1.5" media="screen"> 
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
      
     <!-- Boomerang styles -->
         <link id="wpStylesheet" type="text/css" href="/css/global-style-bw.css" rel="stylesheet" media="screen">
@@ -34,6 +36,7 @@
     <script src="/js/jquery-ui.min.js"></script>
 
     <!-- Page scripts -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     
 </head>
 <body>
