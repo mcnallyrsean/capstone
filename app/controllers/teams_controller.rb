@@ -2,6 +2,9 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.all
+    if params[:league_id]
+      @teams = Team.where(league_id: params[:league_id])
+    end
   end
 
   def new
@@ -24,6 +27,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find_by(id: params[:id])
+    @games = Game.where("team_1_id = ? OR team_2_id = ?", @team.id, @team.id)
   end
 
   def edit

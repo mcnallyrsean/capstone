@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css"> 
     <link rel="stylesheet" href="/assets/fancybox/jquery.fancybox.css?v=2.1.5" media="screen"> 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
 
      
     <!-- Boomerang styles -->
@@ -81,29 +82,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Teams</a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">NFL</a>
-                                <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="homepage-estate-1.html">Homepage</a></li>
-                                    <li><a tabindex="-1" href="estate-listing-1.html">Listing: List </a></li>
-                                    <li><a tabindex="-1" href="estate-listing-2.html">Listing: Grid</a></li>
-                                    <li><a tabindex="-1" href="estate-property.html">Property</a></li>
-                                </ul>
+                                <li><a tabindex="-1" href="/teams?league_id=1">NFL</a></li>
                             </li>
                             <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">NBA</a>
-                                <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="homepage-jobs-1.html">Homepage</a></li>
-                                    <li><a tabindex="-1" href="jobs-listing-1.html">Jobs listing</a></li>
-                                    <li><a tabindex="-1" href="job-description-1.html">Job description</a></li>
-                                </ul>
+                                <li><a tabindex="-1" href="/teams?league_id=2">NBA</a></li>
                             </li>
                             <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">NHL</a>
-                                <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="homepage-jobs-1.html">Homepage</a></li>
-                                    <li><a tabindex="-1" href="jobs-listing-1.html">Jobs listing</a></li>
-                                    <li><a tabindex="-1" href="job-description-1.html">Job description</a></li>
-                                </ul>
+                                <li><a tabindex="-1" href="/teams?league_id=3">NHL</a></li>
                             </li>
                         </ul>
                     </li>
@@ -241,31 +226,14 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Account</a>
                         <ul class="dropdown-menu">
-                            <li><a href="homepage-shop-1.html">Homepage</a></li>
-                            <li><a href="shop-product-list-1.html">Products: Full width</a></li>
-                            <li><a href="shop-product-list-2.html">Products: With sidebar</a></li>
-                            <li><a href="shop-product-single.html">Single product</a></li>
-                            <li><a href="shop-cart.html">Cart</a></li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Checkout progress</a>
-                                <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="shop-checkout-method.html">Checkout: Login-Register</a></li>
-                                    <li><a tabindex="-1" href="shop-checkout-shipping.html">Checkout: Shipping</a></li>
-                                    <li><a tabindex="-1" href="shop-checkout-payment.html">Checkout: Payment method</a></li>
-                                    <li><a tabindex="-1" href="shop-checkout-order.html">Checkout: Order review</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Invoice</a>
-                                <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="invoice-1.html">Invoice: New</a></li>
-                                    <li><a tabindex="-1" href="invoice-2.html">Invoice: Paid</a></li>
-                                    <li><a tabindex="-1" href="invoice-3.html">Invoice: Unpaid</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="user-account.html">User account</a></li>                            
+                            <% if current_user %>
+                                <li><%= link_to "Sign out", "/users/sign_out", method: :delete %></li>
+                            <% else %>
+                              <li><a href="/users/sign_up">Sign up</a></li>
+                              <li><a href="/users/sign_in">Sign in</a></li>
+                            <% end %>                          
                         </ul>
                     </li>
                 </ul>
@@ -275,7 +243,12 @@
     </div>
 </header>        
 </div>
-
+<div class="container-fluid">
+  <% flash.each do |name, message| %>
+    <div class="alert alert-<%= name %> alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p><%= message %></p>
+    </div>
+  <% end %>
   </div>
 <%= yield %>
 <!-- Essentials -->
