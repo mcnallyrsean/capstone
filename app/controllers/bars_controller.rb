@@ -1,8 +1,7 @@
 class BarsController < ApplicationController
 
   def index
-    @bars = Unirest.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.8884,-87.6355&radius=30000&types=bar&key=#{ENV['API_KEY']}").body
-
+    @bars = Bar.all
 
     if params[:search_team]
       @bars = Team.where("name iLIKE ?", "%#{params[:search_team]}%").first.check_ins.map { |ci| ci.bar }.to_set
@@ -15,16 +14,17 @@ class BarsController < ApplicationController
 
   def create
     @bar = Bar.new(
-      id: params[:id],
       name: params[:name],
-      location: params[:location],
-      description: params[:description],
-      hours_of_operation: params[:hours_of_operation],
-      status: params[:status],
-      promo: params[:promo],
-      facebook_url: params[:facebook_url],
-      twitter_handle: params[:twitter_handle],
-      number_of_tvs: params[:number_of_tvs]
+      place_id: params[:place_id],
+      vicinity: params[:vicinity],
+      formatted_address: params[:formatted_address],
+      formatted_phone_number: params[:formatted_phone_number],
+      lat: params[:lat],
+      lng: params[:lng],
+      icon: params[:icon],
+      rating: params[:rating],
+      types: params[:types],
+      url: params[:url]
       )
     if @bar.save
       redirect_to "/bars/#{@bar.id}"
@@ -36,6 +36,7 @@ class BarsController < ApplicationController
   def show
     @bar = Bar.find_by(id: params[:id])
     @games = Game.all
+    @bar_attributes = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@bar.place_id}&key=#{ENV['API_KEY']}").body
   end
 
   def edit
@@ -46,16 +47,17 @@ class BarsController < ApplicationController
   def update
     @bar = Bar.find_by(id: params[:id])
     if @bar.update(
-      id: params[:id],
       name: params[:name],
-      location: params[:location],
-      description: params[:description],
-      hours_of_operation: params[:hours_of_operation],
-      status: params[:status],
-      promo: params[:promo],
-      facebook_url: params[:facebook_url],
-      twitter_handle: params[:twitter_handle],
-      number_of_tvs: params[:number_of_tvs]
+      place_id: params[:place_id],
+      vicinity: params[:vicinity],
+      formatted_address: params[:formatted_address],
+      formatted_phone_number: params[:formatted_phone_number],
+      lat: params[:lat],
+      lng: params[:lng],
+      icon: params[:icon],
+      rating: params[:rating],
+      types: params[:types],
+      url: params[:url]
       )
       redirect_to "/bars/#{@bar.id}"
     else

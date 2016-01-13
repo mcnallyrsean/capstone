@@ -1,7 +1,7 @@
 <h1>All dem teams</h1>
 
 <% @teams.each do |team| %>
-  <h2><%= team.name %></h2>
+  <h2><%= link_to team.name, "/teams/#{team.id}" %></h2>
   <p><%= team.league.name %></p>
   <p><%= team.sport.name %></p>
 <% end %>

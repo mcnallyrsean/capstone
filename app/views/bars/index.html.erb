@@ -1,8 +1,10 @@
 <h1>All da bars</h1>
 
-<% @bars['results'].each do |bar| %>
-  <h2><%= bar['name'] %></h2>
-  <p><%= bar['vicinity'] %></p>
+<% @bars.each do |bar| %>
+  <h2><%= bar.name %></h2>
+  <p><%= bar.vicinity %></p>
+  <p><%= bar.icon %></p>
+  <p><%= bar.place_id %></p>
 <% end %>
 
 

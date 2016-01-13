@@ -1,8 +1,14 @@
 <h1>All the games</h1>
-
+<div class='panel panel-default'>
 <% @games.each do |game| %>
-  <h2><%= game.team_1.name %> vs. <%= game.team_2.name %></h2>
-  <p>Location: <%= game.location %></p>
-  <p><%= game.league.name %></p>
-  <p><%= game.sport.name %></p>
+  <div class="panel panel-heading">
+    <h3 class="panel-title"><%= game.team_1.name %> vs. <%= game.team_2.name %></h3>
+  </div>
+  <div class='panel-body'>
+    <p>Date: <%= game.date %></p>
+    <p>Time: <%= game.time %> CST</p>
+    <p><%= game.league.name %></p>
+    <p><%= game.sport.name %></p>
+  </div>
 <% end %>
+</div>
