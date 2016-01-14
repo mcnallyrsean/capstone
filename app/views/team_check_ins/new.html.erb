@@ -1,0 +1,10 @@
+<h1>Who are you cheering for?</h1>
+
+<%= form_tag '/team_check_ins', method: :post do %>
+  <%= hidden_field_tag(:check_in_id, current_user.check_ins.last.id) %>
+  <div>
+    <%= label_tag :team_id %>
+    <%= text_field_tag :team_id %> 
+  </div>
+  <%= submit_tag "Submit yo" %>
+<% end %>

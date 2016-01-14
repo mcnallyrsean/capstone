@@ -19,7 +19,7 @@ class CheckInsController < ApplicationController
       sport_id: params[:sport_id]
       )
     if @check_in.save
-      redirect_to "/check_ins/#{@check_in.id}"
+      redirect_to "/team_check_ins/new"
     else
       render :new
     end

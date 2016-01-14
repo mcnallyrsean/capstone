@@ -4,8 +4,10 @@
 <p>Date: <%= @game.date %></p>
 <p>Time: <%= @game.time %></p>
 <p>Location <%= @game.location %></p>
+<h2>Check Ins</h2>
 <% @game.check_ins.each do |check_in| %>
   <p><%= check_in.bar.name %></p>
+  <p><%= check_in.bar.vicinity %></p>
 <% end %>
 
 

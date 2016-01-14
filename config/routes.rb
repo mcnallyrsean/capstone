@@ -67,6 +67,10 @@ Rails.application.routes.draw do
   patch '/teams/:id' => 'teams#update'
   delete '/teams/:id' => 'teams#destroy'
 
+  #TEAM CHECK IN routes
+  get '/team_check_ins/new' => 'team_check_ins#new'
+  post '/team_check_ins' => 'team_check_ins#create'
+
   # LEAGUE routes
   get '/leagues' => 'leagues#index'
   get '/leagues/new' => 'leagues#new'
