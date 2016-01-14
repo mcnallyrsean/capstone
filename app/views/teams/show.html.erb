@@ -5,9 +5,13 @@
 <p>Sport: <%= @team.sport.name %></p>
 <br>
 <h3>Check-ins</h3>
-<% @team.check_ins.each do |check_in| %>
-  <p>Game: <%= check_in.game.team_1.name %> vs <%= check_in.game.team_2.name %></p>
-  <p>Bar: <%= check_in.bar.name %></p>
+<% if @team.check_ins.first.present? %>
+  <% @team.check_ins.each do |check_in| %>
+    <p>Game: <%= check_in.game.team_1.name %> vs <%= check_in.game.team_2.name %></p>
+    <p>Bar: <%= check_in.bar.name %></p>
+  <% end %>
+<% else %>
+  <p>Sorry, there are no check-ins for this team.</p>
 <% end %>
 
 <h3>Recent and Upcoming Games</h3>

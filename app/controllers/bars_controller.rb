@@ -71,7 +71,13 @@ class BarsController < ApplicationController
   end
 
   def search
-    redirect_to "/bars?search_team=#{params[:search_team]}"
+    @search_team = params[:search_team]
+    
+    if @search_team.empty?
+      flash[:danger] = "Give me an address and a team bro!"
+      redirect_to "/"
+    else
+      redirect_to "/bars?search_team=#{params[:search_team]}"
+    end
   end
-
 end
