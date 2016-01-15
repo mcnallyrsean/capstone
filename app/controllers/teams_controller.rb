@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   def index
     @teams = Team.all
     if params[:league_id]
-      @teams = Team.where(league_id: params[:league_id])
+      @teams = Team.where(league_id: params[:league_id]).order("name ASC")
     end
   end
 
@@ -17,6 +17,7 @@ class TeamsController < ApplicationController
       name: params[:name],
       league_id: params[:league_id],
       sport_id: params[:sport_id],
+      logo: params[:logo]
       )
     if @team.save
       redirect_to "/teams/#{@team.id}"
