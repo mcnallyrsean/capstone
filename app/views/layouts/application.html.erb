@@ -37,14 +37,13 @@
             font-size: 35px;
             font-weight: bold;
             margin-top: 30px;
+            font-family: "Roboto Slab"
         }
-    </style>
-    <style>
-        .navbar-wp .navbar-nav>li>a {
+         .navbar-wp .navbar-nav>li>a {
             text-transform: uppercase !important;
         }
     </style>
-
+ 
     <!-- Required JS -->
     <script src="/js/jquery.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
@@ -54,6 +53,70 @@
     
 </head>
 <body>
+<section id="asideMenu" class="aside-menu right">
+    <h5>Check In!</h5>
+    <div class="nav">
+        <!-- <ul>
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">About us</a>
+            </li>
+            <li>
+                <a href="#">Blog</a>
+            </li>
+            <li>
+                <a href="#">Work</a>
+            </li>
+            <li>
+                <a href="#">Online shop</a>
+            </li>
+        </ul> -->
+        <h5 class="side-section-title">Which bar are you at?</h5>
+        <%= form_tag '/check_ins', method: :post do %>
+          <div>
+            <%= label_tag :bar_id %>
+            <%= text_field_tag :bar_id %>
+          </div>
+        <h5 class="side-section-title">Which game are you watching?</h5>
+          <div>
+            <%= label_tag :game_id %>
+            <%= text_field_tag :game_id %>
+          </div>
+          <%= submit_tag "Submit yo" %>
+        <% end %>
+        <h5 class="side-section-title">Who are you cheering for?</h5>
+        <%= form_tag '/team_check_ins', method: :post do %>
+          <%= hidden_field_tag(:check_in_id, current_user.check_ins.last.id) %>
+          <div>
+            <%= label_tag :team_id %>
+            <%= text_field_tag :team_id %> 
+          </div>
+          <%= submit_tag "Submit yo" %>
+        <% end %>
+    </div>
+    
+    <h5 class="side-section-title">Social media</h5>
+    <div class="social-media">
+        <a href="#"><i class="fa fa-facebook facebook"></i></a>
+        <a href="#"><i class="fa fa-google-plus google"></i></a>
+        <a href="#"><i class="fa fa-twitter twitter"></i></a>
+    </div>
+    
+    <h5 class="side-section-title">Contact information</h5>
+    <div class="contact-info">
+        <h5>Address</h5>
+        <p>5th Avenue, New York - United States</p>
+        
+        <h5>Email</h5>
+        <p>hello@webpixels.ro</p>
+        
+        <h5>Phone</h5>
+        <p>+10 724 1234 567</p>
+    </div>
+</section>
+
   <div class="body-wrapper">
     <div class="container"></div>
     <div id="divHeaderWrapper">
@@ -105,9 +168,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="/check_ins/new">Check In Now!</a>
-                    </li>
+                    <% if current_user %>
+                        <li>
+                            <a href="/check_ins/new">Check In Now!</a>
+                        </li>
+                    <% end %>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Account</a>
                         <ul class="dropdown-menu">
@@ -119,13 +184,19 @@
                             <% end %>                          
                         </ul>
                     </li>
-                </ul>
-               
+                    <li class="dropdown-aux">
+                        <a href="#" id="cmdAsideMenu" class="dropdown-toggle dropdown-form-toggle" title="Open slidebar">
+                            Check In Now!
+                        </a>
+                    </li>
+
+                </ul>               
             </div><!--/.nav-collapse -->
         </div>
     </div>
 </header>        
 </div>
+
 <div class="container-fluid">
   <% flash.each do |name, message| %>
     <div class="alert alert-<%= name %> alert-dismissible" role="alert">
@@ -170,6 +241,7 @@
 <script src="/assets/owl-carousel/owl.carousel.js"></script>
 <script src="/assets/bootstrap/js/tooltip.js"></script>
 <script src="/assets/bootstrap/js/popover.js"></script>
+
 
 <!-- Sripts for individual pages, depending on what plug-ins are used -->
 

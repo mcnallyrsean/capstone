@@ -2,7 +2,7 @@ class BarsController < ApplicationController
 
   def index
     @bars = Bar.all
-
+    
     if params[:search_team]
       @bars = Team.where("name iLIKE ?", "%#{params[:search_team]}%").first.check_ins.map { |ci| ci.bar }.to_set
     end
@@ -16,11 +16,11 @@ class BarsController < ApplicationController
     @bar = Bar.new(
       name: params[:name],
       place_id: params[:place_id],
-      vicinity: params[:vicinity],
+      address: params[:address],
       formatted_address: params[:formatted_address],
       formatted_phone_number: params[:formatted_phone_number],
-      lat: params[:lat],
-      lng: params[:lng],
+      latitude: params[:latitude],
+      longitude: params[:longitude],
       icon: params[:icon],
       rating: params[:rating],
       types: params[:types],
@@ -51,11 +51,11 @@ class BarsController < ApplicationController
     if @bar.update(
       name: params[:name],
       place_id: params[:place_id],
-      vicinity: params[:vicinity],
+      address: params[:address],
       formatted_address: params[:formatted_address],
       formatted_phone_number: params[:formatted_phone_number],
-      lat: params[:lat],
-      lng: params[:lng],
+      latitude: params[:latitude],
+      longitude: params[:longitude],
       icon: params[:icon],
       rating: params[:rating],
       types: params[:types],
