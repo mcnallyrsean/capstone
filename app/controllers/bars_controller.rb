@@ -1,7 +1,7 @@
 class BarsController < ApplicationController
 
   def index
-    @bars = Bar.all
+    @bars = Bar.all.order("name ASC")
     
     if params[:search_team]
       @bars = Team.where("name iLIKE ?", "%#{params[:search_team]}%").first.check_ins.map { |ci| ci.bar }.to_set

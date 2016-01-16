@@ -1,39 +1,72 @@
 <style>
+  .team-info {
+    color: white;
+    margin-top: 50px;
+  }
+
+  .whitewash {
+    color: white;
+  }
   img {
-    border-radius: 10px;
+    border-radius: 150px;
+    height: 525px;
+    width: 525px;
+    position: fixed;
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+  .panel.panel-default{
+    width: 500px;
   }
 </style>
 
-<h1>Here is a team.</h1>
-<img src="<%= @team.logo %>">
-<h2><%= @team.name %></h2>
-<br>
-<p>League: <%= @team.league.name %></p>
-<p>Sport: <%= @team.sport.name %></p>
-<br>
-<h3>Check-ins</h3>
-<% if @team.check_ins.first.present? %>
-  <% @team.check_ins.each do |check_in| %>
-    <p>Game: <%= check_in.game.team_1.name %> vs <%= check_in.game.team_2.name %></p>
-    <p>Bar: <%= check_in.bar.name %></p>
-  <% end %>
-<% else %>
-  <p>Sorry, there are no check-ins for this team.</p>
-<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <img src="<%= @team.logo %>">
+  </div>
 
-<h3>Recent and Upcoming Games</h3>
-<div class='panel panel-default'>
-<% @games.each do |game| %>
-  <div class="panel panel-heading">
-    <h3 class="panel-title"><%= game.team_1.name %> vs. <%= game.team_2.name %></h3>
-  </div>
-  <div class='panel-body'>
-    <%= link_to game.id, "/games/#{game.id}" %>
-    <p>Date: <%= game.date %></p>
-    <p>Time: <%= game.time %> CST</p>
-    <p><%= game.league.name %></p>
-    <p><%= game.sport.name %></p>
-  </div>
-<% end %>
+
+  <div class="col-md-6">
+    <div class="team-info">
+      <h1><%= @team.name %></h1>
+      <p>League: <%= @team.league.name %></p>
+      <p>Sport: <%= @team.sport.name %></p>
+      <br>
+    </div>
+    
+    <h2 class="whitewash">Check-ins</h2>
+    <% if @team.check_ins.present? %>
+      <div class='panel panel-default'>
+        <% @team.check_ins.each do |check_in| %>
+        <div class="panel panel-heading">
+          <h3 class="panel-title">Game: <%= check_in.game.team_1.name %> vs <%= check_in.game.team_2.name %></h3>
+        </div>
+        <div class="panel-body">
+          <p>Date: <%= check_in.game.date %></p>
+          <p>Bar: <%= check_in.bar.name %></p>
+          <p>User: <%= check_in.user.email %></p>
+        </div>
+      </div>
+        <% end %>
+    <% else %>
+      <p>Sorry, there are no check-ins for this team.</p>
+    <% end %>
+
+    <% unless @games.empty? %>
+    <h2 class="whitewash">Recent and Upcoming Games</h2>
+    <div class='panel panel-default'>
+    <% @games.each do |game| %>
+      <div class="panel panel-heading">
+        <h3 class="panel-title"><%= game.team_1.name %> vs. <%= game.team_2.name %></h3>
+      </div>
+      <div class='panel-body'>
+        <p><%= game.id %></p>
+        <p>Date: <%= game.date %></p>
+        <p>Time: <%= game.time %> CST</p>
+      </div>
+    <% end %>
+    </div>
+    <% end %>
+    </div>
 </div>
 

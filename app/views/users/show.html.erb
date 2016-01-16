@@ -1,22 +1,62 @@
-<p><%= @user.id %></p>
-<p><%= @user.first_name %></p>
-<p><%= @user.last_name %></p>
-<p><%= @user.facebook_url %></p>
-<p><%= @user.twitter_handle %></p>
+<style>
+  #fixed-profile{
+    text-align: center;
+    color: white;
+  }
+  #profile-pic{
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    margin-top: 100px;
+    margin-bottom: 15px;
+  }
 
-<h3>Favorite Teams</h3>
-<ul>
-<% @user.user_teams.each do |user_team| %>
-  <li><%= user_team.team.name %></li>
-<% end %>
-</ul>
+  #profile-team-pic{
+    width: 75px;
+    height: 75px;
+    border-radius: 150px;
+  }
+  .pushdown{
+    margin-top: 30px;
+    color: white;
+  }
+  .whitewash {
+    color: white;
+  }
+  .panel.panel-default{
+    width: 500px;
+  }
+</style>
 
-<h3>Check Ins</h3>
-<% @user.check_ins.each do |check_in| %>
-  <ul>
-    <li><%= check_in.bar.name %>  </li>
-    <li><%= check_in.game.team_1.name %> v. <%= check_in.game.team_2.name %></li>
-    <li><%= check_in.comments %></li>
-  </ul>
-<% end %>
- 
+<div class="row"> 
+  <div class="col-md-6" id="fixed-profile">
+      <img id="profile-pic" src="<%= @user.image %>">
+      <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+      <p><%= @user.email %></p>
+  </div>
+
+  <div class="col-md-6">
+    <h3 class="pushdown">Favorite Teams</h3>
+    <% @user.user_teams.each do |user_team| %>
+      <img id="profile-team-pic" src="<%= user_team.team.logo %>">
+      <p><%= user_team.team.name %></p>
+    <% end %>
+
+    <h3 class="pushdown">Check-Ins</h3>
+    <% if @user.check_ins.present? %>
+      <div class="panel panel-default">
+      <% @user.check_ins.each do |check_in| %>
+        <div class="panel panel-heading">
+          <h3 class="panel-title"><%= check_in.game.team_1.name %> vs. <%= check_in.game.team_2.name %></h3>
+        </div>
+        <div class="panel-body">
+          <p>Bar: <%= check_in.bar.name %></p>
+          <p>Check-In ID: <%= check_in.id %></p>       
+        </div>
+        <% end %>
+    <% else %>
+      <p>You haven't checked in anywhere yet!</p>
+    <% end %>
+  </div>
+</div>
+

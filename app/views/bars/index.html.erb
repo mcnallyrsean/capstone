@@ -1,12 +1,39 @@
+<style>
+  .thumbnail{
+    width: 250px;
+    height: 250px;
+    text-align: center;
+  }
+  .bar-name{
+    font-weight: bold;
+  }
+  h2:hover {
+    background-color: #e74c3c;
+    border-radius: 40px;
+  }
+
+  #bar-icon{
+    margin-top: 40px;
+  }
+</style>
+
 <h1>All da bars</h1>
 
 <div style="height: 500px; width: 500px;"id="map"></div>
 
+<div class="row">
 <% @bars.each do |bar| %>
-  <h2><%= link_to bar.name, "/bars/#{bar.id}" %></h2>
-  <p><%= bar.address %></p>
-  <img src="<%= bar.icon %>">
+  <div class="col-md-6 col-md-3">
+    <div class="thumbnail">
+      <img id="bar-icon" src="<%= bar.icon %>">
+      <div class="caption">
+        <h2 class"bar-name"><%= link_to bar.name, "/bars/#{bar.id}" %></h2>
+        <p><%= bar.address %></p>
+      </div>
+    </div>
+  </div>
 <% end %>
+</div>
 
 <script type="text/javascript">
   var map;

@@ -89,16 +89,36 @@
         height: 20px;
         margin-bottom: 2px;
       }
-    </style>
-    <style>
-        .inline-form-filters {
+  
+      .inline-form-filters {
         position: relative;
         padding: 25px;
         border-radius: 20px;
-    }
-    section.slice {
-        padding: 45px 0;
-    }
+      }
+      section.slice {
+          padding: 45px 0;
+      }
+      .today-games{
+        color: white;
+        font-size: 35px;
+        margin-left: 500px;
+        padding-bottom: 30px;
+      }
+      .games-today{
+        width: 200px;
+        height: 200px;
+        border-radius: 20px;
+      }
+      .media{
+        padding-left: 190px;
+        color: white;
+      }
+      .media-body{
+        text-align: center;
+      }
+      .todays-teams{
+        width: 450px; 
+      }
     </style>
 
     <!-- Required JS -->
@@ -168,23 +188,34 @@
 
 </div>
 
-<h2>Today's Games</h2>
+<h2 class="today-games">Today's Games</h2>
 
-<div class='panel panel-default'>
 <% @games.each do |game| %>
-  <div class="panel panel-heading">
-    <h3 class="panel-title"><%= game.team_1.name %> vs. <%= game.team_2.name %></h3>
+  <div class='media'>
+    <div class="media-left">
+      <img class="games-today" src="<%= game.team_1.logo %>">
+    </div>
+    
+    <div class="media-body">
+      <h4 class="todays-teams"><%= game.team_1.name %> vs. <%= game.team_2.name %></h4>
+        <p>Date: <%= game.date %></p>
+        <p>Time: <%= game.time %> CST</p>
+        <p>League: <%= game.league.name %></p>
+        <p>Sport: <%= game.sport.name %></p>
+        <p>Game ID: <%= game.id %></p>
+        <%= link_to "Check In!", "/check_ins/new", class: "btn btn-success" %>
+        <%= link_to "View Game", "/games/#{game.id}", class: "btn btn-danger" %>
+    </div>
+
+    <div class="media-right">
+      <img class="games-today" src="<%= game.team_2.logo %>">
+    </div>
   </div>
-  <div class='panel-body'>
-    <p>Date: <%= game.date %></p>
-    <p>Time: <%= game.time %> CST</p>
-    <p>League: <%= game.league.name %></p>
-    <p>Sport: <%= game.sport.name %></p>
-    <p>Game ID: <%= game.id %></p>
-    <%= link_to "Check In!", "/check_ins/new", class: "btn btn-success"%>
-  </div>
+  <br>
 <% end %>
-</div>
+
+
+
 <script>
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
