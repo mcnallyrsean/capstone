@@ -37,9 +37,11 @@
 
   <div class="col-md-6">
     <h3 class="pushdown">Favorite Teams</h3>
-    <% @user.user_teams.each do |user_team| %>
-      <img id="profile-team-pic" src="<%= user_team.team.logo %>">
-      <p><%= user_team.team.name %></p>
+    <% unless @user.user_teams.empty? %>
+      <% @user.user_teams.each do |user_team| %>
+        <img id="profile-team-pic" src="<%= user_team.team.logo %>">
+        <p><%= user_team.team.name %></p>
+      <% end %>
     <% end %>
 
     <h3 class="pushdown">Check-Ins</h3>
@@ -51,6 +53,7 @@
         </div>
         <div class="panel-body">
           <p>Bar: <%= check_in.bar.name %></p>
+          <p>Date: <%= check_in.game.date %></p>
           <p>Check-In ID: <%= check_in.id %></p>       
         </div>
         <% end %>
