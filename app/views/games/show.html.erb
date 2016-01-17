@@ -1,13 +1,60 @@
-<h1>Here's game:</h1>
+<style>
+  .games-today{
+    border-radius: 40px;
+    width: 475px;
+    height: 475px;
+  }
+  .media-body{
+    color: white;
+    text-align: center;
+  }
+  #check-in-thumb{
+    width: 150px;
+    height: 100px;
+  }
+  h2{
+    color: white;
+    margin-top: 20px;
+  }
+</style>
 
-<h2><%= @game.team_1.name %> vs. <%= @game.team_2.name %></h2>
-<p>Date: <%= @game.date %></p>
-<p>Time: <%= @game.time %></p>
+<div class='media'>
+    <div class="media-left">
+      <img class="games-today" src="<%= @game.team_1.logo %>">
+    </div>
+    
+    <div class="media-body">
+      <h4 class="todays-teams"><%= @game.team_1.name %> vs. <%= @game.team_2.name %></h4>
+        <p>Date: <%= @game.date %></p>
+        <p>Time: <%= @game.time %> CST</p>
+        <p>League: <%= @game.league.name %></p>
+        <p>Sport: <%= @game.sport.name %></p>
+        <p>Game ID: <%= @game.id %></p>
+        <%= link_to "Check In!", "/check_ins/new", class: "btn btn-success" %>
+        
+    </div>
+
+    <div class="media-right">
+      <img class="games-today" src="<%= @game.team_2.logo %>">
+    </div>
+</div>
+
 <h2>Check Ins</h2>
-<% @game.check_ins.each do |check_in| %>
-  <p><%= check_in.bar.name %></p>
-  <p><%= check_in.bar.address %></p>
+<% if @game.check_ins.present? %>
+<div class="col-sm-8 col-md-3">
+  <div class="thumbnail">
+    <img id="check-in-thumb" src="http://www.becomingminimalist.com/wp-content/uploads/2011/11/51-Untruths-From-Television.jpg">
+      <div class="caption">
+        <% @game.check_ins.each do |check_in| %>
+          <p><%= check_in.bar.name %></p>
+          <p><%= check_in.bar.address %></p>
+          <p><%= check_in.id %></p>
+          <p>Date: <%= check_in.game.date %></p>
+          <p>User: <%= check_in.user.first_name %> <%= check_in.user.last_name %></p>
+        <% end %>
+      </div>
+  </div>
+</div>
+<% else %>
+  <p>Sorry, no check ins for this game.</p>
 <% end %>
-
-
-
