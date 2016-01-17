@@ -160,7 +160,10 @@
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg">
                                     <label class="sr-only">Search text</label>
-                                    <input type="text" name="search_team" class="form-control input-lg" placeholder="I want to watch the...">
+                                    <input ng-model="nameFilter" list="name-list" type="text" name="search_team" class="form-control input-lg" placeholder="I want to watch the...">
+                                    <datalist id="name-list">
+                                      <option ng-repeat="team in teams">{{ team.name }}</option>
+                                    </datalist id="name-list">
                                 </div>
                             </div>
                             <div class="col-md-6">          

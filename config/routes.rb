@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   
   root 'pages#home'
 
@@ -12,6 +13,14 @@ Rails.application.routes.draw do
   patch '/bars/:id' => 'bars#update'
   delete '/bars/:id' => 'bars#destroy'
   post '/bars/search' => 'bars#search'
+
+  namespace :api do
+    namespace :v1 do
+      get '/bars' => "bars#index"
+      get '/games' => "games#index"
+      get '/teams' => "teams#index"
+    end
+  end
 
   # CHECK IN routes
   get '/check_ins' => 'check_ins#index'

@@ -53,8 +53,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     
 </head>
-<body>
-  <div class="body-wrapper">
+<body ng-app="app">
+  <div class="body-wrapper" ng-controller="searchCtrl" ng-init="setup()">
     <div class="container"></div>
     <div id="divHeaderWrapper">
     <header class="header-standard-2">     
