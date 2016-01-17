@@ -4,7 +4,18 @@
   <%= hidden_field_tag(:check_in_id, current_user.check_ins.last.id) %>
   <div>
     <%= label_tag :team_id %>
-    <%= text_field_tag :team_id %> 
+    <input ng-model="nameFilter" list="name-list" name="team_id" id="team_id">
+      <datalist id="name-list">
+        <option ng-repeat="team in teams">{{ team.name }}</option>
+      </datalist id="name-list">
   </div>
   <%= submit_tag "Submit yo" %>
 <% end %>
+
+<!-- <form name="myForm">
+  <label for="singleSelect"> Single select: </label><br>
+    <select name="singleSelect" ng-model="data.singleSelect">
+      <option value="option-1">{{ team_1 }}</option>
+      <option value="option-2">{{ team_2 }}</option>
+    </select><br>
+</form> -->

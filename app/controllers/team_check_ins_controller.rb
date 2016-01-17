@@ -4,6 +4,8 @@ class TeamCheckInsController < ApplicationController
   end 
 
   def create
+    @team_1 = CheckIn.last.game.team_1.name
+    @team_2 = CheckIn.last.game.team_2.name
     @team_check_in = TeamCheckIn.new(
       check_in_id: params[:check_in_id],
       team_id: params[:team_id]

@@ -1,13 +1,25 @@
 <h1>Check in yo</h1>
 
-<%= form_tag '/check_ins', method: :post do %>
-  <div>
-    <%= label_tag :bar_id %>
-    <%= text_field_tag :bar_id %>
+
+<div class="col-md-5">
+  <input ng-model="barFilter" list="bar-list" name="bar_id" id="bar_id" placeholder="Which bar?">
+  <div class="filterBars">
+    <div class="bar" ng-repeat="bar in bars | filter:barFilter">
+      <span ng-click="selectedBar(bar)">{{ bar.name }} </span>
+    </div>
   </div>
-  <div>
-    <%= label_tag :game_id %>
-    <%= text_field_tag :game_id %>
+</div>
+
+<div class="col-md-5">
+  <input ng-model="gameFilter" list="game-list" name="game_id" id="game_id" placeholder="Which game?">
+  <div class="filterGames">
+    <div class="game" ng-repeat="game in games | filter:gameFilter">
+      <span ng-click="selectedGame(game)">{{ game.team_1_id }} vs. {{game.team_2_id}}</span>
+    </div>
   </div>
-  <%= submit_tag "Submit yo" %>
-<% end %>
+</div>
+
+<div>
+  <button ng-click="addCheckIn()">Check In!</button>
+</div>
+  

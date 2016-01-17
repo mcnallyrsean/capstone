@@ -19,6 +19,11 @@ Rails.application.routes.draw do
       get '/bars' => "bars#index"
       get '/games' => "games#index"
       get '/teams' => "teams#index"
+      get '/check_ins' => "check_ins#index"
+      post '/check_ins' => "check_ins#create"
+      get '/team_check_ins' => 'team_check_ins#index'
+      post '/team_check_ins' => 'team_check_ins#create'
+      get '/user' => 'users#index'
     end
   end
 
