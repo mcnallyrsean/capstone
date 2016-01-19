@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
 gem 'geocoder'
 gem 'google_places'
+gem 'gmaps4rails'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'unirest'
 # Use jquery as the JavaScript library
