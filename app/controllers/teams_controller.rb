@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show]
   def index
     @teams = Team.all
     if params[:league_id]

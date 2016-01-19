@@ -1,5 +1,5 @@
 class BarsController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show, :search]
   def index
     @bars = Bar.all.order("name ASC")
     

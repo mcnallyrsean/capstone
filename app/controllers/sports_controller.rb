@@ -1,5 +1,5 @@
 class SportsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @sports = Sport.all
   end

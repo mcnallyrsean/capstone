@@ -1,4 +1,5 @@
 class CheckInsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @check_ins = CheckIn.all

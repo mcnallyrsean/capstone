@@ -1,25 +1,51 @@
-<h1>Check in yo</h1>
+<style>
+  h1{
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+  }
+  .bar{
+    color: white;
+  }
+  .game{
+    color: white;
+  }
+
+  input{
+    width: 350px;
+    font-size: 20px;
+    line-height: normal !important;
+  }
+</style>
+
+<h1>First things first!</h1>
+
+<ul>
+  <li ng-repeat="error in errors">{{ error }}</li>
+</ul>
+
 
 
 <div class="col-md-5">
-  <input ng-model="barFilter" list="bar-list" name="bar_id" id="bar_id" placeholder="Which bar?">
+  <input ng-model="barFilter" list="bar-list" name="bar_id" id="bar_id" placeholder="Which bar are you at?">
   <div class="filterBars">
     <div class="bar" ng-repeat="bar in bars | filter:barFilter">
-      <span ng-click="selectedBar(bar)">{{ bar.name }} </span>
+      <span ng-click="selectedBar(bar)" style="cursor: pointer">{{ bar.name }} </span>
     </div>
   </div>
 </div>
 
 <div class="col-md-5">
-  <input ng-model="gameFilter" list="game-list" name="game_id" id="game_id" placeholder="Which game?">
+  <input ng-model="gameFilter" list="game-list" name="game_id" id="game_id" placeholder="Which game are you watching?">
   <div class="filterGames">
     <div class="game" ng-repeat="game in games | filter:gameFilter">
-      <span ng-click="selectedGame(game)">{{ game.team_1_id }} vs. {{game.team_2_id}}</span>
+      <span ng-click="selectedGame(game)" style="cursor: pointer">{{ game.team_1_id }} vs. {{game.team_2_id}}</span>
     </div>
   </div>
 </div>
 
 <div>
-  <button ng-click="addCheckIn()">Check In!</button>
+  <button class="btn btn-success" ng-click="addCheckIn()">Next!</button>
 </div>
   

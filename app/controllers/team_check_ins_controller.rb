@@ -1,4 +1,6 @@
 class TeamCheckInsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @team_check_ins = TeamCheckIn.new
   end 

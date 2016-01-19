@@ -206,7 +206,9 @@
         <p>League: <%= game.league.name %></p>
         <p>Sport: <%= game.sport.name %></p>
         <p>Game ID: <%= game.id %></p>
-        <%= link_to "Check In!", "/check_ins/new", class: "btn btn-success" %>
+        <% if current_user %>
+          <%= link_to "Check In!", "/check_ins/new", class: "btn btn-success" %>
+        <% end %>
         <%= link_to "View Game", "/games/#{game.id}", class: "btn btn-danger" %>
     </div>
 

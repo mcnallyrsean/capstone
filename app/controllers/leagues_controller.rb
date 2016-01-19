@@ -1,5 +1,5 @@
 class LeaguesController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @leagues = League.all
   end

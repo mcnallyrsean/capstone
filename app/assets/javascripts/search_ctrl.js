@@ -33,7 +33,7 @@
       $scope.gameFilter = game.team_1_id + " vs. " + game.team_2_id;
       $scope.activeGame = game;
     };
-
+    
     $scope.addCheckIn = function() {
       var checkIn = {
         bar_id: $scope.activeBar.id,
@@ -44,6 +44,21 @@
       $http.post('/api/v1/check_ins.json', checkIn).then(function() {
         window.location.href = "/team_check_ins/new";
         
+      }, function(error) {
+        console.log(error);
+        $scope.errors = error.data.errors;
+      });
+    };
+
+    $scope.addTeamCheckIn = function(team_id) {
+      var teamCheckIn = {
+        team_id: team_id,
+        check_in_id: $scope.checkIns[$scope.checkIns.length - 1].id
+      };
+
+      $http.post('/api/v1/team_check_ins.json', teamCheckIn).then(function() {
+        window.location.href = "/";
+
       }, function(error) {
         console.log(error);
         $scope.errors = error.data.errors;

@@ -8,4 +8,8 @@ class CheckIn < ActiveRecord::Base
   belongs_to :sport
   has_many :team_check_ins
   has_many :teams, through: :team_check_ins
+
+  validates :bar_id, presence: true
+  validates :game_id, presence: true
+  validates :user_id, presence: true
 end
