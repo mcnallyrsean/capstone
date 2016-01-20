@@ -40,7 +40,7 @@
   <input ng-model="gameFilter" list="game-list" name="game_id" id="game_id" placeholder="Which game are you watching?">
   <div class="filterGames">
     <div class="game" ng-repeat="game in games | filter:gameFilter">
-      <span ng-click="selectedGame(game)" style="cursor: pointer">{{ game.team_1_id }} vs. {{game.team_2_id}}</span>
+      <span ng-click="selectedGame(game)" style="cursor: pointer">{{ game.team_1_id }} vs. {{game.team_2_id}} - {{game.date}}</span>
     </div>
   </div>
 </div>

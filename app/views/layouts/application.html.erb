@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css"> 
     <link rel="stylesheet" href="/assets/fancybox/jquery.fancybox.css?v=2.1.5" media="screen"> 
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application'%>
     <%= csrf_meta_tags %>
 
      
     <!-- Boomerang styles -->
-        <link id="wpStylesheet" type="text/css" href="/css/global-style-bw.css" rel="stylesheet" media="screen">
+    <link id="wpStylesheet" type="text/css" href="/css/global-style-bw.css" rel="stylesheet" media="screen">
         
     
     <!-- Favicon -->
@@ -45,6 +45,7 @@
     </style>
  
     <!-- Required JS -->
+    <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
     <script src="/js/jquery.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
     

@@ -1,3 +1,4 @@
+
 <style>
   .thumbnail{
     width: 250px;
@@ -20,7 +21,10 @@
   }
 </style>
 
-<div style="height: 500px; width: 500px;"id="map"></div>
+<div style='width: 100%;'>
+  <div id="map" style='width: 100%; height: 350px;'></div>
+</div>
+<!-- <div style="height: 500px; width: 500px;"id="map"></div> -->
 
 <div class="row" id="pushdown">
 <% @bars.each do |bar| %>
@@ -36,16 +40,25 @@
 <% end %>
 </div>
 
+<!--   handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%#=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+ -->
 <script type="text/javascript">
-  var map;
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
-      });
-    }
+
+var map;
+function initMap() {
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 41.887986, lng: -87.628761},
+    zoom: 12
+  });
+}
+
 </script>
 <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3OZx7Ka5cu3nD10cSC2kaT5Ltb4jftk0&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3OZx7Ka5cu3nD10cSC2kaT5Ltb4jftk0&callback=initMap">
 </script>
-
