@@ -68,7 +68,6 @@ GEM
     geocoder (1.2.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    gmaps4rails (2.1.2)
     google_places (0.32.0)
       httparty (~> 0.13.1)
     httparty (0.13.7)
@@ -176,7 +175,6 @@ DEPENDENCIES
   devise
   dotenv-rails
   geocoder
-  gmaps4rails
   google_places
   jbuilder (~> 2.0)
   jquery-rails

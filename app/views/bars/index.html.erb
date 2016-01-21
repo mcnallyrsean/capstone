@@ -19,16 +19,21 @@
   #pushdown{
     margin-top: 10px;
   }
+  .sorry{
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+  }
 </style>
 
 <div style='width: 100%;'>
   <div id="map" style='width: 100%; height: 350px;'></div>
 </div>
-<!-- <div style="height: 500px; width: 500px;"id="map"></div> -->
 
+<% if @bar_array.present? %>
 <div class="row" id="pushdown">
-<% @bars.each do |bar| %>
-  <div class="col-md-6 col-md-3">
+  <% @bar_array.uniq.each do |bar| %>
+    <div class="col-md-6 col-md-3">
     <div class="thumbnail">
       <img id="bar-icon" src="<%= bar.icon %>">
       <div class="caption">
@@ -37,25 +42,61 @@
       </div>
     </div>
   </div>
-<% end %>
+  <% end %>
 </div>
+<% else %>
+  <% if @bar_array.blank? && @searched %>
+    <h1 class="sorry">Sorry no matches! Here are some bars in your area. Ask them to turn it on for you!</h1>
+  <% end %>
+  <div class="row" id="pushdown">
+    <% @bars.each do |bar| %>
+      <div class="col-md-6 col-md-3">
+        <div class="thumbnail">
+          <img id="bar-icon" src="<%= bar.icon %>">
+          <div class="caption">
+            <h2 class"bar-name"><%= link_to bar.name, "/bars/#{bar.id}" %></h2>
+            <p><%= bar.address %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
-<!--   handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%#=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
- -->
+
 <script type="text/javascript">
 
 var map;
 function initMap() {
-
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 41.887986, lng: -87.628761},
-    zoom: 12
+    center: {lat: <%= @search_location[0] %>, lng: <%= @search_location[1] %>},
+    zoom: 14
   });
+  var contentStrings = []
+  var infoWindows = []
+  var markers =[]
+  <% @bar_array.uniq.each_with_index do |bar, index| %>
+  var index = <%= index %>
+  console.log(index)
+  var barPosition = {lat: <%= bar.latitude %>, lng: <%= bar.longitude %>};
+  console.log(barPosition)
+  contentStrings.push('<div><h3><%= bar.name %></h3></div>' + '<div><%= bar.address %></div>' + '<div><p><%= link_to "Get Directions!", "https://www.google.com/maps/place/" + "#{bar.address}", target: '_blank' %> </p></div>');
+  console.log(contentStrings[index])
+  markers.push(new google.maps.Marker({
+    map: map,
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+    position: barPosition
+  }));
+  infoWindows.push(new google.maps.InfoWindow({
+   content: contentStrings[index]
+  }));
+  (function(passed_index) {
+    markers[passed_index].addListener('click', function() {       
+      infoWindows[passed_index].open(map, this);
+    });    
+  })(index);
+  <% end %>
 }
 
 </script>

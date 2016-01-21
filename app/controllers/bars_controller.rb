@@ -10,14 +10,16 @@ class BarsController < ApplicationController
     # end
     if params[:search_team] && params[:search_location] && params[:search_radius]
       @bars = Bar.near(params[:search_location], params[:search_radius], :order => "distance")
-      # bar_array = []
-      # @bars.each do |bar|
-      #   bar.check-ins.each do |check_in|
-      #     if check_in.game.team_1.name == params[:search_team] || check_in.game.team_2.name == params[:search_team]
-      #       bar_array << bar
-      #     end
-      #   end
-      # end
+      @searched = true
+      @search_location = Geocoder.coordinates(params[:search_location])
+      @bar_array = []
+      @bars.each do |bar|
+        bar.check_ins.each do |check_in|
+          if check_in.game.team_1.name == params[:search_team] || check_in.game.team_2.name == params[:search_team]
+            @bar_array << bar
+          end
+        end
+      end
     else
       @bars = Bar.all.order("name ASC")
     end   
@@ -54,14 +56,6 @@ class BarsController < ApplicationController
     @bar_attributes = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@bar.place_id}&key=#{ENV['API_KEY']}").body
     @photo_reference = @bar_attributes['result']['photos'][0]['photo_reference']
     @bar_photos = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@photo_reference}&key=#{ENV['API_KEY']}"
-
-    @hash = Gmaps4rails.build_markers(@bar) do |bar, marker|
-      marker.lat bar.latitude
-      marker.lng bar.longitude
-      marker.infowindow "<a target='blank' href='https://www.google.com/maps/place/"+"#{bar.address}"+"'>Get Directions With Google Maps</a>"
-      marker.json({ title: bar.name })
-    end
-
   end
 
   def edit
