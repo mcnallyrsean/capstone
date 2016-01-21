@@ -1,11 +1,28 @@
 class BarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
+  
   def index
-    @bars = Bar.all.order("name ASC")
-    
-    if params[:search_team]
-      @bars = Team.where("name iLIKE ?", "%#{params[:search_team]}%").first.check_ins.map { |ci| ci.bar }.to_set
-    end
+    # if params[:search_team]
+      # @bars = Team.where("name iLIKE ?", "%#{params[:search_team]}%").first.check_ins.map { |ci| ci.bar }.to_set
+    #   if @bars.empty?
+    #       flash[:danger] = "It doesn't look like we have any recorded check-ins for that team. Sorry!"
+    #       redirect_to "/"
+    # end
+    if params[:search_team] && params[:search_location] && params[:search_radius]
+      @bars = Bar.near(params[:search_location], params[:search_radius], :order => "distance")
+      @searched = true
+      @search_location = Geocoder.coordinates(params[:search_location])
+      @bar_array = []
+      @bars.each do |bar|
+        bar.check_ins.each do |check_in|
+          if check_in.game.team_1.name == params[:search_team] || check_in.game.team_2.name == params[:search_team]
+            @bar_array << bar
+          end
+        end
+      end
+    else
+      @bars = Bar.all.order("name ASC")
+    end   
   end
 
   def new
@@ -72,12 +89,20 @@ class BarsController < ApplicationController
 
   def search
     @search_team = params[:search_team]
+    @search_location = params[:search_location]
+    @search_radius = params[:search_radius]
     
-    if @search_team.empty?
-      flash[:danger] = "Give me an address and a team bro!"
+    if @search_team.empty? &&  @search_location.empty?
+      flash[:danger] = "Give me a team and location please!"
+      redirect_to "/"
+    elsif @search_location.empty?
+      flash[:danger] = "Give me a location please!"
+      redirect_to "/"
+    elsif @search_team.empty? 
+      flash[:danger] = "Give me a team please!"
       redirect_to "/"
     else
-      redirect_to "/bars?search_team=#{params[:search_team]}"
+      redirect_to "/bars?search_team=#{params[:search_team]}&search_location=#{params[:search_location]}&search_radius=#{params[:search_radius]}"
     end
   end
 end

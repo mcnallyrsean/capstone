@@ -16,6 +16,17 @@
     color: white;
     margin-top: 20px;
   }
+  h3:hover{
+    background-color: #e74c3c;
+    border-radius: 20px;
+  }
+  .matchup-logos{
+    width: 95%;
+    border-radius: 100px;
+  }
+  #versus{
+    margin-top: 25px;
+  }
 </style>
 
 <div class='media'>
@@ -42,18 +53,32 @@
 
 <h2>Check Ins</h2>
 <% if @game.check_ins.present? %>
-<div class="col-sm-8 col-md-3">
-  <div class="thumbnail">
-    <img id="check-in-thumb" src="http://www.becomingminimalist.com/wp-content/uploads/2011/11/51-Untruths-From-Television.jpg">
-      <div class="caption">
-        <% @game.check_ins.each do |check_in| %>
-          <p><%= check_in.bar.name %></p>
+  <div class="caption">
+    <% @game.check_ins.each do |check_in| %>
+    <div class="col-sm-8 col-md-3">
+      <div class="thumbnail">
+        <div class="row">
+          <div class="col-xs-5">
+            <%= image_tag(check_in.game.team_1.logo, :class => "matchup-logos") %>
+          </div> 
+          <div class="col-xs-2" id="versus">
+            <p>Vs.</p>
+          </div> 
+          <div class="col-xs-5">
+            <%= image_tag(check_in.game.team_2.logo, :class => "matchup-logos") %>
+          </div>
+        </div>
+        <div class="caption">
+          <h3><%= link_to check_in.bar.name, "/bars/#{check_in.bar.id}" %></h3>
           <p><%= check_in.bar.address %></p>
           <p><%= check_in.id %></p>
           <p>Date: <%= check_in.game.date %></p>
           <p>User: <%= check_in.user.first_name %> <%= check_in.user.last_name %></p>
-        <% end %>
+        </div>
       </div>
+    </div>
+    <% end %>
+  </div>
   </div>
 </div>
 <% else %>
