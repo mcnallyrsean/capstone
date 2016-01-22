@@ -1,6 +1,10 @@
 class BarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
   
+  def all
+    @bars = Bar.all.order("name ASC")
+  end
+
   def index
     # if params[:search_team]
       # @bars = Team.where("name iLIKE ?", "%#{params[:search_team]}%").first.check_ins.map { |ci| ci.bar }.to_set

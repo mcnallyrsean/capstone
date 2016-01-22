@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # BAR routes
+  get 'bars/all' => 'bars#all'
   get '/bars' => 'bars#index'
   get '/bars/new' => 'bars#new'
   post '/bars' => 'bars#create'
