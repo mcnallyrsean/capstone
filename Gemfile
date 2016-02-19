@@ -18,6 +18,7 @@ gem 'geocoder'
 gem 'google_places'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'unirest'
+gem 'seed_dump'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

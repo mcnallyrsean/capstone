@@ -82,7 +82,7 @@ function initMap() {
     console.log(index)
     var barPosition = {lat: <%= bar.latitude %>, lng: <%= bar.longitude %>};
     console.log(barPosition)
-    contentStrings.push('<div><h3><%= bar.name %></h3></div>' + '<div><%= bar.address %></div>' + '<div><p><%= link_to "Get Directions!", "https://www.google.com/maps/place/" + "#{bar.address}", target: '_blank' %> </p></div>');
+    contentStrings.push('<div><h3><%= link_to bar.name, "/bars/#{bar.id}" %></h3></div>' + '<div><%= bar.address %></div>' + '<div><p><%= link_to "Get Directions!", "https://www.google.com/maps/place/" + "#{bar.address}", target: '_blank' %> </p></div>');
     console.log(contentStrings[index])
     markers.push(new google.maps.Marker({
       map: map,
