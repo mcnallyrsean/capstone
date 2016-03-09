@@ -64,15 +64,6 @@ Rails.application.routes.draw do
   patch '/images/:id' => 'images#update'
   delete '/images/:id' => 'images#destroy'
 
-  # MATCHUP routes
-  get '/matchups' => 'matchups#index'
-  get '/matchups/new' => 'matchups#new'
-  post '/matchups' => 'matchups#create'
-  get '/matchups/:id' => 'matchups#show'
-  get '/matchups/:id/edit' => 'matchups#edit'
-  patch '/matchups/:id' => 'matchups#update'
-  delete '/matchups/:id' => 'matchups#destroy'
-
   # TEAM routes
   get '/teams' => 'teams#index'
   get '/teams/new' => 'teams#new'
